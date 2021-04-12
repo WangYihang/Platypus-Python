@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="platypus-python",
-    version="1.0.0",
+    version="1.0.1",
     author="Wang Yihang",
     author_email="wangyihanger@gmail.com",
     description="Python SDK for reverse shell sessions manager - Platypus",

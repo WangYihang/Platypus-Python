@@ -50,11 +50,6 @@ class Server:
             ))
         return result
 
-    def system(self, cmd):
-        assert self.digest != None
-        for client in self.get_clients():
-            client.system(cmd)
-
     def __str__(self):
         return "[{}] {}:{}".format(self.digest, self.host, self.port)
 
@@ -139,50 +134,8 @@ class Platypus:
     def delete_server(self, digest):
         return self.get_server(digest).delete()
 
-    def get_client(self, digest):
-        url = "{}/client/{}".format(self.url, digest)
-        if self.debug: print(url)
-        response = requests.get(url).json()
-        if self.debug: print(response)
-        assert response['status']
-        client = Client(
-            self, 
-            response['msg']['hash'],
-            response['msg']['host'],
-            response['msg']['port'],
-            response['msg']['python2'],
-            response['msg']['python3'],
-        )
-        return client
-
-    def get_clients(self):
-        url = "{}/client".format(self.url)
-        if self.debug: print(url)
-        response = requests.get(url).json()
-        if self.debug: print(response)
-        assert response['status']
-        result = []
-        for client in response['msg']:
-            result.append(Client(
-                self,
-                client['hash'],
-                client['host'],
-                client['port'],
-                client['python2'],
-                client['python3'],
-            ))
-        return result
-
-    def delete_client(self, digest):
-        return self.get_client(digest).delete()
-
-    def system(self, cmd):
-        for server in self.get_servers():
-            server.system(cmd)
-
     def __str__(self):
         return "Platypus RESTful API EndPoint: {}".format(self.url)
 
     def __repr__(self):
         return str(self)
-

