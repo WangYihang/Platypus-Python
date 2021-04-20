@@ -10,7 +10,7 @@ class Server:
 
     def create(self):
         assert self.digest == None
-        url = "{}/server".format(self.platypus.url)
+        url = "{}/api/server".format(self.platypus.url)
         if self.debug: print(url)
         data = {
             "host": self.host, 
@@ -25,7 +25,7 @@ class Server:
 
     def delete(self):
         assert self.digest != None
-        url = "{}/server/{}".format(self.platypus.url, self.digest)
+        url = "{}/api/server/{}".format(self.platypus.url, self.digest)
         if self.debug: print(url)
         response = requests.delete(url).json()
         if self.debug: print(response)
@@ -33,7 +33,7 @@ class Server:
         return response['status']
 
     def get_clients(self):
-        url = "{}/server/{}/client".format(self.platypus.url, self.digest)
+        url = "{}/api/server/{}/client".format(self.platypus.url, self.digest)
         if self.debug: print(url)
         response = requests.get(url).json()
         if self.debug: print(response)
@@ -67,7 +67,7 @@ class Client:
         self.debug = server.debug
 
     def delete(self):
-        url = "{}/client/{}".format(self.server.platypus.url, self.digest)
+        url = "{}/api/client/{}".format(self.server.platypus.url, self.digest)
         if self.debug: print(url)
         response = requests.delete(url).json()
         if self.debug: print(response)
@@ -75,7 +75,7 @@ class Client:
         return response['status']
 
     def system(self, cmd):
-        url = "{}/client/{}".format(self.server.platypus.url, self.digest)
+        url = "{}/api/client/{}".format(self.server.platypus.url, self.digest)
         if self.debug: print(url)
         response = requests.post(url, data={"cmd": cmd}).json()
         if self.debug: print(response)
@@ -107,7 +107,7 @@ class Platypus:
         return server
 
     def get_server(self, digest):
-        url = "{}/server/{}".format(self.url, digest)
+        url = "{}/api/server/{}".format(self.url, digest)
         if self.debug: print(url)
         response = requests.get(url).json()
         if self.debug: print(response)
@@ -116,7 +116,7 @@ class Platypus:
         return server
 
     def get_servers(self):
-        url = "{}/server".format(self.url)
+        url = "{}/api/server".format(self.url)
         if self.debug: print(url)
         response = requests.get(url).json()
         if self.debug: print(response)

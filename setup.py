@@ -5,10 +5,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="platypus-python",
-    version="1.0.1",
+    version="1.0.2",
     author="Wang Yihang",
     author_email="wangyihanger@gmail.com",
-    description="Python SDK for reverse shell sessions manager - Platypus",
+    description="Python SDK for reverse shell sessions manager - Platypus v1.3.5",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/WangYihang/Platypus-Python",
