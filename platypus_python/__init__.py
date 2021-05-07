@@ -122,7 +122,7 @@ class Platypus:
         if self.debug: print(response)
         assert response['status']
         result = []
-        for digest, server in response['msg'].items():
+        for digest, server in response['msg']['servers'].items():
             result.append(Server(
                 self,
                 server['host'],
